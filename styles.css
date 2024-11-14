@@ -1,0 +1,265 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font: italic 1.2rem "Fira Sans", serif;
+    background:  radial-gradient( #ffffff, #f977b8);
+}
+
+header {
+    background: #f15da7;
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    position: relative; /* Allow absolute positioning of the logo */
+}
+
+header .logo {
+    position: absolute;
+    top: 10px; /* Adjust this value to control the vertical position */
+    left: 10px; /* Adjust this value to control the horizontal position */
+    height: 100px;
+    width: 100px;
+}
+
+/* Navigation Styling */
+nav {
+    display: flex;
+    overflow: hidden;
+    justify-content: flex-start; /* Align navigation to the left */
+    margin-bottom: -10px;    
+    float: right;
+    
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li {
+    display: inline;    
+
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    transition: color 0.3s, transform 0.2s ease-in-out; /* Add transition */
+    padding: 10px;
+
+}
+
+nav ul :hover {
+    color: #ffe4e1;  /* Light coral on hover */
+    transform: scale(1.1); /* Add scale effect on hover */
+    background-color: #ccc;
+    border-radius: 10px;
+}
+nav a.active {
+    background-color: #fe9cc5;
+    border-radius: 15px;
+    padding: 10px;
+    color: white;
+  }
+
+/* Header Text Styling */
+
+header p {
+    margin-top: 10px;
+    font-size: 15px;
+    font: italic small-caps bold 20px/2 cursive;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+/* Services Section */
+#services {
+    padding: 40px 0;
+    background:  radial-gradient( #ffffff, #f15da7, #ffffff);
+}
+
+#services h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.service-list {
+    display: flex;
+    flex-wrap: wrap;                  /* Allow items to wrap into multiple rows */
+    justify-content: center;          /* Center items within the container */
+}
+
+.service {
+    flex-basis: calc(25% - 20px);    /* Set to allow three items per row */
+    margin: 10px;                    /* Margin for spacing between items */
+    text-align: center;
+    padding: 10px;                   /* Reduced padding for smaller appearance */
+    background: #f9f9f9;
+    border-radius: 10px;
+    transition: background 0.3s, transform 0.3s ease-in-out; /* Smooth transition */
+    display: flex;                   /* Use flexbox for vertical alignment */
+    flex-direction: column;          /* Stack children vertically */
+    box-sizing: border-box;          /* Ensure padding and border are included in width */
+    max-width: 250px;                /* Set a maximum width for smaller boxes */
+}
+
+/* Optional: To ensure better appearance on smaller screens */
+@media (max-width: 900px) {
+    .service {
+        flex-basis: calc(45% - 20px); /* Stack two items per row on medium screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .service {
+        flex-basis: calc(100% - 20px); /* Stack items vertically on smaller screens */
+    }
+}
+
+.service:hover {
+    background: #ffe4e1;  /* Light coral background on hover */
+    transform: translateY(-10px); /* Move up slightly on hover */
+}
+
+.service img {
+    width: 100%;                 /* Allow width to be auto to maintain aspect ratio */
+    height: 100%;              /* Set a fixed height for images */
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+
+.service h3 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: #df4491; /* Pink color for service titles */
+}
+
+.service p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Testimonials Section */
+#testimonials {
+    padding: 40px 0;
+    background:  radial-gradient( #ffffff, #f15da7);
+    text-align: center;
+}
+
+#testimonials h1 {
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+.testimonial-list {
+    display: flex;
+    justify-content: space-around;
+    font: 1.2rem "Fira Sans", sans-serif;
+}
+
+.testimonial {
+    flex-basis: 45%;
+    background: #fffefe;
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 10px;
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.testimonial:hover {
+    transform: translateY(-10px); /* Move up on hover */
+}
+
+.testimonial p {
+    font-style: italic;
+    margin-bottom: 10px;
+    color: rgb(0, 0, 0);
+}
+
+.testimonial h4 {
+    color: #ff69b4;
+}
+
+/* Contact Section */
+#booking {
+    padding: 40px 0;
+    background: #fef6f900;
+    display: flex;                    /* Use flexbox for centering */
+    justify-content: center;          /* Center the content horizontally */
+    align-items: center;              /* Center the content vertically */
+}
+
+.booking-container {
+    background: white;                /* Set a background color for the inner container */
+    padding: 30px;                    /* Add some padding around the inner content */
+    border-radius: 10px;              /* Add border radius */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for depth */
+    width: 90%;                       /* Set a width for the inner container */
+    max-width: 600px;                /* Optional: Set a maximum width */
+}
+
+
+#booking h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 5px;
+}
+
+form input,
+form select,
+form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+
+form button {
+    padding: 5px 10px; /* Reduce padding to minimize button size */
+    width: 50%;        /* Set button width */
+    height: 40px;      /* Adjust the button height */
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: auto;      /* Center the button horizontally */
+    display: block;    /* Ensure the button takes up full width of its container */
+    transition: background-color 0.3s, transform 0.3s ease-in-out; /* Add hover transition */
+}
+
+form button:hover {
+    background-color: #ff1493;  /* Darker pink on hover */
+    transform: scale(1.05); /* Scale button slightly on hover */
+}
+
+/* Footer */
+footer {
+    background: #000000;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Glamour Nail Salon</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .dashboard-container {
+            width: 1200px;
+            margin: 0 auto;
+        }
+        .two-column {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .column {
+            flex: 1;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .summary-box {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        /* Pie Chart container */
+        .summary-box {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="admin-nav">
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo" class="logo">
+        </div>
+        <ul>
+            <li><a class="active" href="admin_index.php">Home</a></li>
+            <li><a href="admin_dashboard.php">Details</a></li>
+        </ul>
+    </nav>
+
+    <section id="admin-dashboard">
+        <div class="dashboard-container">
+            <h2>Admin Dashboard</h2>
+            <div class="two-column">
+                <!-- Pie Chart for Customer Booking Statuses -->
+                <div class="column">
+                    <h2>Customer Booking Statuses</h2>
+                    <div class="summary-box">
+                        <canvas id="statusPieChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Horizontal Bar Chart for Service Availment -->
+                <div class="column">
+                    <h2>Clients Availing Services</h2>
+                    <div class="summary-box">
+                        <canvas id="serviceBarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Pie Chart for Booking Statuses
+        const ctxPie = document.getElementById('statusPieChart').getContext('2d');
+        const statusPieChart = new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+                labels: ['Pending', 'Confirmed', 'Finished', 'Cancelled'],
+                datasets: [{
+                    label: 'Booking Status Distribution',
+                    data: [12, 15, 7, 4], // Sample data for booking statuses
+                    backgroundColor: ['#FF5733', '#FF8C00', '#28a745', '#6c757d'], // Different colors
+                    borderColor: ['#FF5733', '#FF8C00', '#28a745', '#6c757d'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Horizontal Bar Chart for Services Availment
+        const ctxBar = document.getElementById('serviceBarChart').getContext('2d');
+        const serviceBarChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: ['Manicure', 'Pedicure', 'Nail Art', 'Acrylic Nails', 'Gel Nails'],
+                datasets: [{
+                    label: 'Number of Clients Availing Services',
+                    data: [50, 45, 30, 20, 15], // Sample data for services availed
+                    backgroundColor: ['#FF5733', '#33FF57', '#3357FF', '#FF33A8', '#FF9633'], // Different colors for each bar
+                    borderColor: ['#FF5733', '#33FF57', '#3357FF', '#FF33A8', '#FF9633'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                indexAxis: 'y', // Horizontal bars
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book an Appointment - Glamour Nail Salon</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Basic form styles */
+        form input,
+        form select,
+        form textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .booking-container {
+            flex: 2;
+        }
+
+        .booking-monitoring-container {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .booking-monitoring {
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .booking-monitoring table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .booking-monitoring th, .booking-monitoring td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .booking-monitoring th {
+            background-color: #f1f1f1;
+        }
+
+        .nail-aesthetician {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .nail-aesthetician.active {
+            display: block;
+        }
+
+        .clearfix {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-between;
+        }
+
+        .form-column {
+            flex: 1;
+            min-width: 45%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        #service_price {
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        // Define service prices
+        const servicePrices = {
+            "Manicure": 250,
+            "Pedicure": 300,
+            "Gel Nails": 400,
+            "Acrylic Nails": 500,
+            "Nail Art": 350,
+            "Spa Treatments": 700
+        };
+
+        function updatePrice() {
+            const serviceSelect = document.getElementById("service");
+            const priceDisplay = document.getElementById("service_price");
+            const selectedService = serviceSelect.value;
+
+            if (selectedService) {
+                const price = servicePrices[selectedService];
+                priceDisplay.innerText = `Price: ₱${price}`;
+            } else {
+                priceDisplay.innerText = '';
+            }
+        }
+
+        // Sample booking data
+        const bookingsData = [
+            {
+                service: "Manicure",
+                bookingDate: "2024-11-20",
+                bookingTime: "10:00 AM",
+                status: "Accepted",
+                worker: "Nail Technician A"
+            },
+            {
+                service: "Pedicure",
+                bookingDate: "2024-11-22",
+                bookingTime: "12:30 PM",
+                status: "Pending",
+                worker: ""
+            }
+        ];
+
+        function loadBookings() {
+            const bookingTable = document.querySelector(".booking-monitoring table");
+
+            // Clear existing rows
+            bookingTable.innerHTML = `
+                <tr>
+                    <th>Service</th>
+                    <th>Booking Date</th>
+                    <th>Booking Time</th>
+                    <th>Status</th>
+                    <th>Nail Aesthetician</th>
+                </tr>
+            `;
+
+            // Populate the table with booking data
+            bookingsData.forEach(booking => {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>${booking.service}</td>
+                    <td>${booking.bookingDate}</td>
+                    <td>${booking.bookingTime}</td>
+                    <td>${booking.status}</td>
+                    <td class="${booking.status === 'Accepted' ? 'active' : ''}">
+                        ${booking.worker ? booking.worker : 'N/A'}
+                    </td>
+                `;
+
+                bookingTable.appendChild(row);
+            });
+        }
+
+        window.onload = loadBookings;
+    </script>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <img src="logo.png" alt="Logo" class="logo" style="margin-top:-60px; height: 200px; width:200px;">
+        <p>Your nails, your style. Pamper yourself with our luxury services!</p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="feedbacks.html">Feedbacks</a></li>
+                <li><a class="active" href="booking.html">Book Now</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section id="booking">
+    <div class="container">
+        <div class="booking-container">
+            <h2>Book Your Appointment</h2>
+
+            <form method="post" action="">
+                <div class="clearfix">
+                    <div class="form-column">
+                        <label for="customer_name">Name</label>
+                        <input type="text" id="customer_name" name="customer_name" required readonly value="Sample User">
+                    </div>
+
+                    <div class="form-column">
+                        <label for="service">Service</label>
+                        <select id="service" name="service" required onchange="updatePrice()">
+                            <option value="">Select a Service</option>
+                            <option value="Manicure">Manicure</option>
+                            <option value="Pedicure">Pedicure</option>
+                            <option value="Gel Nails">Gel Nails</option>
+                            <option value="Acrylic Nails">Acrylic Nails</option>
+                            <option value="Nail Art">Nail Art</option>
+                            <option value="Spa Treatments">Spa Treatments</option>
+                        </select>
+                        <p id="service_price"></p>
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                    <div class="form-column">
+                        <label for="booking_date">Booking Date</label>
+                        <input type="date" id="booking_date" name="booking_date" required>
+                    </div>
+
+                    <div class="form-column">
+                        <label for="booking_time">Booking Time</label>
+                        <select id="booking_time" name="booking_time" required>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="10:30 AM">10:30 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="11:30 AM">11:30 AM</option>
+                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="12:30 PM">12:30 PM</option>
+                            <option value="1:00 PM">1:00 PM</option>
+                            <option value="1:30 PM">1:30 PM</option>                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="2:00 PM">2:00 PM</option>
+                            <option value="2:30 PM">2:30 PM</option>
+                            <option value="3:00 PM">3:00 PM</option>                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="3:30 PM">3:30 PM</option>
+                            <option value="4:00 PM">4:00 PM</option>
+                            <option value="4:30 PM">4:30 PM</option>
+                            <option value="5:00 PM">5:00 PM</option>
+                            <option value="5:30 PM">5:30 PM</option>
+                            <!-- Additional options -->
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn">Book Appointment</button>
+            </form>
+        </div>
+
+        <div class="booking-monitoring-container">
+            <h3>Your Booking History</h3>
+            <div class="booking-monitoring">
+                <table></table>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

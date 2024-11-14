@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Glamour Nail Salon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="admin-nav">
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo" class="logo">
+        </div>
+        <ul>
+            <li><a href="admin_index.html">Home</a></li>            
+            <li><a class="active" href="admin_dashboard.html">Details</a></li>
+
+        </ul>
+    </nav>
+
+    <section id="admin-dashboard">
+        <div class="dashboard-container">
+            <h2>Admin Dashboard</h2>
+            <h3>Bookings Overview</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Service</th>
+                        <th>Price</th>
+                        <th>Booking Date</th>
+                        <th>Booking Hour</th>
+                        <th>Status</th>
+                        <th>Aesthetician Name</th>
+                        <th>Aesthetician Contact</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="bookingTableBody">
+                    <!-- Booking data will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Sample booking data with 20 entries
+            const bookings = [
+                { id: 1, username: "alice", service: "Manicure", amount: 500, booking_date: "2024-11-10", booking_time: "14:30", status: "Pending", worker_name: "Lily Johnson", worker_contact: "09123456789" },
+                { id: 2, username: "bob", service: "Pedicure", amount: 650, booking_date: "2024-11-11", booking_time: "15:00", status: "Done", worker_name: "Emma Brown", worker_contact: "09129876543" },
+                { id: 3, username: "charlie", service: "Nail Art", amount: 800, booking_date: "2024-11-12", booking_time: "13:00", status: "Pending", worker_name: "Sophia White", worker_contact: "09131234567" },
+                { id: 4, username: "david", service: "Acrylic Nails", amount: 1200, booking_date: "2024-11-13", booking_time: "16:30", status: "Cancelled", worker_name: "Anna Green", worker_contact: "09144567890" },
+                { id: 5, username: "eva", service: "Gel Nails", amount: 1000, booking_date: "2024-11-14", booking_time: "14:00", status: "Pending", worker_name: "Chloe Blue", worker_contact: "09152345678" },
+                { id: 6, username: "frank", service: "Manicure", amount: 500, booking_date: "2024-11-15", booking_time: "12:30", status: "Done", worker_name: "Lily Johnson", worker_contact: "09123456789" },
+                { id: 7, username: "grace", service: "Pedicure", amount: 700, booking_date: "2024-11-16", booking_time: "15:00", status: "Pending", worker_name: "Emma Brown", worker_contact: "09129876543" },
+                { id: 8, username: "hank", service: "Nail Art", amount: 850, booking_date: "2024-11-17", booking_time: "11:00", status: "Done", worker_name: "Sophia White", worker_contact: "09131234567" },
+                { id: 9, username: "iris", service: "Acrylic Nails", amount: 1250, booking_date: "2024-11-18", booking_time: "17:00", status: "Pending", worker_name: "Anna Green", worker_contact: "09144567890" },
+                { id: 10, username: "jack", service: "Gel Nails", amount: 1050, booking_date: "2024-11-19", booking_time: "14:30", status: "Cancelled", worker_name: "Chloe Blue", worker_contact: "09152345678" },
+                { id: 11, username: "kate", service: "Manicure", amount: 550, booking_date: "2024-11-20", booking_time: "13:00", status: "Pending", worker_name: "Lily Johnson", worker_contact: "09123456789" },
+                { id: 12, username: "leo", service: "Pedicure", amount: 720, booking_date: "2024-11-21", booking_time: "15:30", status: "Done", worker_name: "Emma Brown", worker_contact: "09129876543" },
+                { id: 13, username: "maya", service: "Nail Art", amount: 900, booking_date: "2024-11-22", booking_time: "10:00", status: "Pending", worker_name: "Sophia White", worker_contact: "09131234567" },
+                { id: 14, username: "nick", service: "Acrylic Nails", amount: 1300, booking_date: "2024-11-23", booking_time: "16:00", status: "Pending", worker_name: "Anna Green", worker_contact: "09144567890" },
+                { id: 15, username: "olivia", service: "Gel Nails", amount: 1080, booking_date: "2024-11-24", booking_time: "12:00", status: "Cancelled", worker_name: "Chloe Blue", worker_contact: "09152345678" },
+                { id: 16, username: "paul", service: "Manicure", amount: 600, booking_date: "2024-11-25", booking_time: "11:30", status: "Done", worker_name: "Lily Johnson", worker_contact: "09123456789" },
+                { id: 17, username: "quincy", service: "Pedicure", amount: 740, booking_date: "2024-11-26", booking_time: "14:00", status: "Pending", worker_name: "Emma Brown", worker_contact: "09129876543" },
+                { id: 18, username: "rose", service: "Nail Art", amount: 950, booking_date: "2024-11-27", booking_time: "15:30", status: "Done", worker_name: "Sophia White", worker_contact: "09131234567" },
+                { id: 19, username: "sam", service: "Acrylic Nails", amount: 1350, booking_date: "2024-11-28", booking_time: "16:00", status: "Pending", worker_name: "Anna Green", worker_contact: "09144567890" },
+                { id: 20, username: "tina", service: "Gel Nails", amount: 1100, booking_date: "2024-11-29", booking_time: "14:30", status: "Cancelled", worker_name: "Chloe Blue", worker_contact: "09152345678" }
+            ];
+
+            const formatPrice = (amount) => `₱${amount.toFixed(2)}`;
+            const formatTime = (time) => {
+                const date = new Date(`1970-01-01T${time}:00`);
+                return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+            };
+
+            const loadBookings = () => {
+                const tableBody = document.getElementById("bookingTableBody");
+                tableBody.innerHTML = "";
+
+                bookings.forEach((booking) => {
+                    const row = document.createElement("tr");
+
+                    row.innerHTML = `
+                        <td>${booking.username || 'N/A'}</td>
+                        <td>${booking.service || 'N/A'}</td>
+                        <td>${formatPrice(booking.amount)}</td>
+                        <td>${booking.booking_date || 'N/A'}</td>
+                        <td>${formatTime(booking.booking_time)}</td>
+                        <td>${booking.status || 'N/A'}</td>
+                        <td>${booking.worker_name || 'N/A'}</td>
+                        <td>${booking.worker_contact || 'N/A'}</td>
+                        <td>
+                            ${
+                                booking.status.toLowerCase() !== 'done' 
+                                    ? `<a href="cancel_booking.html?id=${booking.id}">Cancel</a>`
+                                    : `<span>Done</span>`
+                            }
+                        </td>
+                    `;
+
+                    tableBody.appendChild(row);
+                });
+            };
+
+            loadBookings();
+        });
+    </script>
+</body>
+</html>

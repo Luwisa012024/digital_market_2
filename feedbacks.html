@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Testimonials - Glamour Nail Salon</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .form-container, .feedback-container {
+            width: 48%;
+        }
+        .feedback-container {
+            height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .success {
+            color: green;
+            text-align: center;
+        }
+        .feedback-item {
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #ffffff;
+            width: 45%; /* Make the boxes smaller */
+            float: left; /* Align boxes in rows */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .feedback-item h4 {
+            margin: 0 0 5px;
+            font-size: 1.1em;
+            color: #3498db;
+        }
+        .feedback-item p {
+            margin: 5px 0;
+            color: #333;
+        }
+        .feedback-item small {
+            color: #777;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <img src="logo.png" alt="Logo" class="logo" style="margin-top:-60px; height: 200px; position:left; width:200px;">
+        <p>Your nails, your style. Pamper yourself with our luxury services!</p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active" href="feedbacks.html">Feedbacks</a></li>
+                <li><a href="booking.html">Book Now</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <div class="form-container">
+        <h2>Share Your Feedback</h2>
+        <p id="successMessage" class="success"></p>
+        <p id="errorMessage" class="error"></p>
+        <form id="feedbackForm">
+            <label for="message">Your Feedback</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+
+    <div class="feedback-container">
+        <h2>Client Feedbacks</h2>
+        <div id="feedbackList">
+            <div class="feedback-item">
+                <h4>isabella_turner</h4>
+                <p>The spa treatment was rejuvenating, and the ambiance was calming. Highly recommend!</p>
+                <small>Posted on: October 20, 2024, 3:45 pm</small>
+            </div>
+            <div class="feedback-item">
+                <h4>jane_doe</h4>
+                <p>Absolutely loved the manicure! The staff was friendly and attentive. Will come back soon!</p>
+                <small>Posted on: November 8, 2024, 5:15 pm</small>
+            </div>
+            <div class="feedback-item">
+                <h4>sarah_lee</h4>
+                <p>The pedicure service was relaxing, and my feet feel amazing. Great ambiance too!</p>
+                <small>Posted on: November 13, 2024, 2:39 pm</small>
+            </div>
+            <div class="feedback-item">
+                <h4>lucy_brown</h4>
+                <p>Nail Art was on point! The design turned out exactly as I imagined.</p>
+                <small>Posted on: November 18, 2024, 4:15 pm</small>
+            </div>
+            <div class="feedback-item">
+                <h4>olivia_clark</h4>
+                <p>Spa treatment was so refreshing. Loved the relaxation and care taken.</p>
+                <small>Posted on: November 9, 2024, 12:30 pm</small>
+            </div>
+            <div class="feedback-item">
+                <h4>sophia_morris</h4>
+                <p>My manicure and pedicure combo was perfect! Great service and friendly staff.</p>
+                <small>Posted on: November 7, 2024, 3:15 pm</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

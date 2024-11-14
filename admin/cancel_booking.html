@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel Booking - Glamour Nail Salon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="admin-nav">
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo" class="logo">
+        </div>
+        <ul>
+            <li><a href="admin_index.html">Home</a></li>
+            <li><a href="admin_dashboard.html">Details</a></li>
+            <li><a href="admin_products.html">Manage Products</a></li>
+            <li><a href="admin_feedbacks.html">Customer Feedback</a></li>
+            <li><a href="create_admin.html">Create Admin</a></li>
+            <li><a href="admin_create_worker.html">Create Worker</a></li>
+            <li><a href="admin_logout.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <section id="booking-cancellation">
+        <div class="cancellation-container">
+            <h2>Cancel Booking</h2>
+            <p>Please review the booking details before canceling:</p>
+
+            <!-- Booking Details -->
+            <div id="bookingDetails">
+                <!-- Booking details will be loaded here via JavaScript -->
+            </div>
+
+            <form id="cancelForm" method="POST">
+                <input type="hidden" id="bookingId" name="bookingId">
+                <button type="submit" id="cancelButton">Cancel Booking</button>
+            </form>
+            <p id="errorMessage" style="color: red;"></p>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const bookingId = urlParams.get("id");
+
+            if (!bookingId) {
+                window.location.href = "admin_dashboard.html"; // Redirect if no booking ID is provided
+            }
+
+            // Sample booking data - this would normally be fetched from a database
+            const bookings = [
+                { id: 1, username: "alice", service: "Manicure", amount: 500, booking_date: "2024-11-10", booking_time: "14:30", status: "Pending", worker_name: "Lily Johnson", worker_contact: "09123456789" },
+                { id: 2, username: "bob", service: "Pedicure", amount: 650, booking_date: "2024-11-11", booking_time: "15:00", status: "Done", worker_name: "Emma Brown", worker_contact: "09129876543" },
+                // ... Add more bookings here
+            ];
+
+            const booking = bookings.find(b => b.id === parseInt(bookingId));
+
+            if (!booking) {
+                document.getElementById("errorMessage").innerText = "Booking not found!";
+                return;
+            }
+
+            const formatPrice = (amount) => `₱${amount.toFixed(2)}`;
+            const formatTime = (time) => {
+                const date = new Date(`1970-01-01T${time}:00`);
+                return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+            };
+
+            // Fill booking details
+            document.getElementById("bookingDetails").innerHTML = `
+                <p><strong>Name:</strong> ${booking.username}</p>
+                <p><strong>Service:</strong> ${booking.service}</p>
+                <p><strong>Price:</strong> ${formatPrice(booking.amount)}</p>
+                <p><strong>Booking Date:</strong> ${booking.booking_date}</p>
+                <p><strong>Booking Time:</strong> ${formatTime(booking.booking_time)}</p>
+                <p><strong>Status:</strong> ${booking.status}</p>
+                <p><strong>Aesthetician:</strong> ${booking.worker_name}</p>
+                <p><strong>Aesthetician Contact:</strong> ${booking.worker_contact}</p>
+            `;
+
+            // Set hidden booking ID for submission
+            document.getElementById("bookingId").value = booking.id;
+
+            // Handle form submission
+            document.getElementById("cancelForm").addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                const formData = new FormData(event.target);
+
+                // Assuming you'd send this to a PHP script or backend for cancellation
+                fetch("cancel_booking_backend.php", {
+                    method: "POST",
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = "admin_dashboard.html"; // Redirect back to dashboard
+                    } else {
+                        document.getElementById("errorMessage").innerText = data.message || "An error occurred.";
+                    }
+                })
+                .catch(error => {
+                    document.getElementById("errorMessage").innerText = "Error canceling booking!";
+                });
+            });
+        });
+    </script>
+</body>
+</html>

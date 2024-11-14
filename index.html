@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glamour Nail Salon</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        header {
+            background: #f15da7;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            position: relative; /* Allow absolute positioning of the logo */
+        }
+        #feedbacks {
+            margin-top: 40px;
+            text-align: center; /* Center the feedback section */
+        }
+        .feedback-container {
+            display: flex; /* Arrange feedbacks in a row */
+            overflow-x: auto; /* Enable horizontal scrolling */
+            padding: 10px;
+            justify-content: start; /* Align feedbacks to the start of the container */
+            gap: 10px; /* Add space between feedback items */
+        }
+        .feedback {
+            background: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 280px; /* Width of each feedback box */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+            flex-shrink: 0; /* Prevent shrinking of the feedback item */
+        }
+        .feedback h4 {
+            color: #f15da7;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        .feedback p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .feedback small {
+            color: #555;
+            font-style: italic;
+        }
+        @media (max-width: 768px) {
+            .feedback {
+                width: 100%; /* On smaller screens, feedbacks take full width */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="header-content">
+            <img src="logo.png" alt="Logo" class="logo" style=" margin-top:-60px; height: 200px; position:left; width:200px;">
+            <p>Your nails, your style. Pamper yourself with our luxury services!</p>
+            <!-- Navigation Menu -->
+        <nav>
+            <ul>
+                <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a herf="feedbacks.html">Feedbacks</a> </li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+<!-- Services Section -->
+<section id="services">
+    <div class="container">
+        <h1 style="font-size: 30px;">Our Nail Services</h1>
+        <div class="service-list">
+            <div class="service">
+                <img src="img/manicure.jpg" alt="Manicure">
+                <h3>Manicure</h3>
+                <p>Enjoy a relaxing manicure session with premium nail polishes and treatments.</p>
+            </div>
+            <div class="service">
+                <img src="img/pedicure.png" alt="Pedicure">
+                <h3>Pedicure</h3>
+                <p>Get beautiful feet with our luxurious pedicure treatments that include exfoliation and massage.</p>
+            </div>
+            <div class="service">
+                <img src="img/nails1.jpg" alt="Gel Nails">
+                <h3>Gel Nails</h3>
+                <p>Get long-lasting, stunning nails with our gel nail services available in various designs.</p>
+            </div>
+            <div class="service">
+                <img src="img/nails2.png" alt="Acrylic Nails">
+                <h3>Acrylic Nails</h3>
+                <p>For those looking for something bold and strong, our acrylic nails service offers beauty and durability.</p>
+            </div>
+            <div class="service">
+                <img src="img/nails4.png" alt="Nail Art">
+                <h3>Nail Art</h3>
+                <p>Get creative! Choose from a variety of unique designs or customize your own nail art.</p>
+            </div>
+            <div class="service">
+                <img src="img/spa.jpg" alt="Spa Treatments">
+                <h3>Nail Spa Treatments</h3>
+                <p>Experience our rejuvenating spa treatments that soothe and nourish your hands and feet.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+<section id="feedbacks">
+    <div class="container">
+        <h2>Client Feedbacks</h2>
+        <div class="feedback-container">
+            <!-- Example feedback -->
+            <div class="feedback">
+                <h4>isabella_turner</h4>
+                <p>The spa treatment was rejuvenating, and the ambiance was calming. Highly recommend!.</p>
+                <small>Posted on: October 20, 2024, 3:45 pm</small>
+            </div>
+
+            <div class="feedback">
+                <h4>jane_doe</h4>
+                <p>Absolutely loved the manicure! The staff was friendly and attentive. Will come back soon!</p>
+                <small>Posted on: November 8, 2024, 5:15 pm</small>
+            </div>
+
+            <div class="feedback">
+                <h4>sarah_lee</h4>
+                <p>The pedicure service was relaxing, and my feet feel amazing. Great ambiance too!</p>
+                <small>Posted on: November 13, 2024, 2:39 pm</small>
+            </div>
+
+            <div class="feedback">
+                <h4>lucy_brown</h4>
+                <p>Nail Art was on point! The design turned out exactly as I imagined.</p>
+                <small>Posted on: November 18, 2024, 4:15 pm</small>
+            </div>
+
+            <div class="feedback">
+                <h4>olivia_clark</h4>
+                <p>Spa treatment was so refreshing. Loved the relaxation and care taken.</p>
+                <small>Posted on: November 9, 2024, 12:30 pm</small>
+            </div>
+
+            <div class="feedback">
+                <h4>sophia_morris</h4>
+                <p>My manicure and pedicure combo was perfect! Great service and friendly staff.</p>
+                <small>Posted on: November 7, 2024, 3:15 pm</small>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Glamour Nail Salon. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

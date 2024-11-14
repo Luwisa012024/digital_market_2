@@ -1,0 +1,23 @@
+{
+    "name": "my-node-app",
+    "version": "1.0.0",
+    "description": "A simple Node.js app",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "test": "echo \"No tests specified\" && exit 1"
+    },
+    "dependencies": {
+        "express": "^4.21.1"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.7"
+    },
+    "author": "Your Name",
+    "license": "MIT",
+    "keywords": [
+        "node",
+        "express",
+        "app"
+    ]
+}
